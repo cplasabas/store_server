@@ -1,2 +1,2 @@
 # Store Server
-Generic websocket server for online stores
+Generic API server for online stores
