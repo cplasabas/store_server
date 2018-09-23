@@ -17,9 +17,10 @@ db.product_status = require('../models/product_status.js')(sequelize, Sequelize)
 db.manufacturers = require('../models/manufacturers.js')(sequelize, Sequelize);
 db.categories = require('../models/categories.js')(sequelize, Sequelize);
 
-db.products.belongsTo(db.categories,{foreignKey: 'category_id'})
-db.products.belongsTo(db.manufacturers, {foreignKey: 'manufacturer_id'})
+db.products.belongsTo(db.categories,{foreignKey: 'category_id',AS:'category'})
+db.products.belongsTo(db.manufacturers, {foreignKey: 'manufacturer_id',AS:'manufacturer'})
 db.products.hasOne(db.product_status,{foreignKey: 'product_id',AS:'product_status'})
+
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize

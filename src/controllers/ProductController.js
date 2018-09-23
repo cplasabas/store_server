@@ -1,9 +1,10 @@
 const {products} = require('../models')
 const {product_status} = require('../models')
-
+const {categories} = require('../models')
+const {manufacturers} = require('../models')
 module.exports = {
 	index (req,res){
-		products.all({include:[product_status]}).then(product => {
+		products.all({include:[product_status,categories,manufacturers]}).then(product => {
   			res.status(200).send({
 		   		products: product
 			})
