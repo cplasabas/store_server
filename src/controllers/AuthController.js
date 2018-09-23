@@ -5,9 +5,11 @@ const config = require("../config/config")
 
 module.exports = {
 	async login (req,res){
-
-		await users.findOne({ username: req.body.username }).then(user =>{
-			console.log(req.body.password);
+		await users.findOne({
+			where: {
+			  username: req.body.username
+			}
+		  }).then(user =>{
 			if(bcrypt.compareSync(req.body.password, user.password)){
 				var token = jwt.sign({ id: user._id }, config.secret, {
      				expiresIn: 86400
