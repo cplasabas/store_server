@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => 
-	sequelize.define('Product_status', {
+	sequelize.define('product_status', {
 		product_id: {
 			type: DataTypes.INTEGER,
 			allowNull: false
