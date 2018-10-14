@@ -3,7 +3,7 @@ const joi = require("joi")
 module.exports = {
 	create (req,res,next) {
 		const schema = {
-			name: joi.string(),
+			code: joi.string(),
 			description: joi.string().allow(''),
 			category_id: joi.number().integer(),
 			manufacturer_id: joi.number().integer(),

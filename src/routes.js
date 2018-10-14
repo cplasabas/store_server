@@ -9,9 +9,6 @@ const ProductControllerPolicy = require("./policies/ProductControllerPolicy")
 const CategoryController = require("./controllers/CategoryController")
 const CategoryControllerPolicy = require("./policies/CategoryControllerPolicy")
 
-const ManufacturerController = require("./controllers/ManufacturerController")
-const ManufacturerControllerPolicy = require("./policies/ManufacturerControllerPolicy")
-
 module.exports = (app) => {
 	app.post('/register',AuthControllerPolicy.register,AuthController.register)
 	app.post('/login',AuthController.login)
@@ -34,10 +31,4 @@ module.exports = (app) => {
 	app.get('/category/:id',CategoryController.show)
 	app.put('/category/:id',CategoryController.update)
 	app.delete('/category/:id',CategoryController.delete)
-
-	app.get('/manufacturer',ManufacturerController.index)
-	app.post('/product',ManufacturerControllerPolicy.create,ManufacturerController.create)
-	app.get('/manufacturer/:id',ManufacturerController.show)
-	app.put('/manufacturer/:id',ManufacturerController.update)
-	app.delete('/manufacturer/:id',ManufacturerController.delete)
 }	

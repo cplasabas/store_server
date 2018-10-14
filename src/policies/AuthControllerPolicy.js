@@ -9,7 +9,8 @@ module.exports = {
 			username: joi.string(),
 			password: joi.string(),
 			contact: joi.string().allow(''),
-			address: joi.string().allow('')
+			address: joi.string().allow(''),
+			level: joi.number().integer()
 		}	
 
 		const {error,value} = joi.validate(req.body,schema)
@@ -18,6 +19,7 @@ module.exports = {
 			next()	
 		}else{
 			res.status(400).send({
+	
 				error: error.details[0].message
 			})
 		}

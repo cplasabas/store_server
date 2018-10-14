@@ -22,6 +22,11 @@ module.exports = (sequelize, DataTypes) =>
 			type: DataTypes.DATE,
 			allowNull: true
 		},
+		term_id: {
+			type: DataTypes.INTEGER,
+			defaultValue: null,
+			allowNull: true
+		},
 		createdAt:{
 			type: DataTypes.DATE,
 			defaultValue:DataTypes.NOW

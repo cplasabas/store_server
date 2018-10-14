@@ -1,10 +1,9 @@
 const {products} = require('../models')
 const {product_status} = require('../models')
 const {categories} = require('../models')
-const {manufacturers} = require('../models')
 module.exports = {
 	index (req,res){
-		products.all({include:[product_status,categories,manufacturers]}).then(product => {
+		products.all({include:[product_status,categories]}).then(product => {
   			res.status(200).send({
 		   		products: product
 			})
@@ -15,7 +14,7 @@ module.exports = {
 				await products.create(req.body).then(product => {
 					var status_payload = {
 						product_id : product.dataValues.id,
-						status: "On Hand",
+						status: "Manufactured",
 						commission: 5,
 					}
 					product_status.create(status_payload).then(product => {
@@ -25,17 +24,17 @@ module.exports = {
 					}).catch(error => {
 						console.log(error)
 					   res.status(400).send({
-							   message: "Product Status Error"
+							   message: error.message
 					   })
 					})
 				}).catch(error => {
 				   res.status(400).send({
-				   		message: "Product already exists."
+						 message: error.message
 				   })
 				})
 			}catch(error){
 				res.status(400).send({
-				   		message: "Product registration failed."
+					message: error.message
 				})
 			}
 	},

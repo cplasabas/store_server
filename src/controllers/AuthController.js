@@ -11,11 +11,13 @@ module.exports = {
 			}
 		  }).then(user =>{
 			if(bcrypt.compareSync(req.body.password, user.password)){
+	
 				var token = jwt.sign({ id: user._id }, config.secret, {
-     				expiresIn: 86400
-    			});
+					expiresIn: 86400
+				});
 
-    			res.status(200).send({ token: token });
+				delete user.dataValues.password;
+				res.status(200).send({ token: token, data: user });
 			}else{
 				res.status(400).send({
 		   			message: "Password not correct."
@@ -38,8 +40,9 @@ module.exports = {
 				    	id: user._id, message: "User registered." 
 				    })
 				}).catch(error => {
+
 				   res.status(400).send({
-				   		message: "User already exists."
+				   		message: error.message
 				   })
 				})
 			}catch(error){
