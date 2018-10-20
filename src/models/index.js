@@ -16,6 +16,7 @@ db.products = require('../models/products.js')(sequelize, Sequelize);
 db.product_status = require('../models/product_status.js')(sequelize, Sequelize);
 db.terms = require('../models/terms.js')(sequelize, Sequelize);
 db.product_images = require('../models/product_images.js')(sequelize, Sequelize);
+db.expenses = require('../models/expenses.js')(sequelize, Sequelize);
 db.categories = require('../models/categories.js')(sequelize, Sequelize);
 
 db.products.belongsTo(db.categories,{foreignKey: 'category_id',AS:'category'})
