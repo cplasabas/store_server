@@ -2,11 +2,15 @@ module.exports = (sequelize, DataTypes) =>
 	sequelize.define('terms', {
 		name: DataTypes.STRING,
 		description: DataTypes.STRING,
-		month: {
+		months: {
 			type: DataTypes.INTEGER,
 			defaultValue: 0
 		},
-		year: {
+		years: {
+			type: DataTypes.INTEGER,
+			defaultValue: 0
+		},
+		days: {
 			type: DataTypes.INTEGER,
 			defaultValue: 0
 		},

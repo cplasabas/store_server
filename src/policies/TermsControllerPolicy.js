@@ -5,8 +5,9 @@ module.exports = {
     const schema = {
       name: joi.string(),
       description: joi.string().allow(''),
-      month: joi.number().integer().allow(''),
-      year: joi.number().integer().allow('')
+      months: joi.number().integer().allow(''),
+      years: joi.number().integer().allow(''),
+      days: joi.number().integer().allow('')
     }
 
     const { error, value } = joi.validate(req.body, schema)

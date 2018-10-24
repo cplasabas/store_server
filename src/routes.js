@@ -31,6 +31,8 @@ module.exports = (app) => {
 	app.get('/product/:id',ProductController.show)
 	app.put('/product/:id',ProductController.update)
 	app.delete('/product/:id',ProductController.delete)
+	app.put('/product_details/:id', ProductController.updateDetails)
+	app.put('/product_status/:id', ProductController.updateStatus)
 
 	app.get('/expense', ExpenseController.index)
 	app.post('/expense', ExpenseControllerPolicy.create, ExpenseController.create)

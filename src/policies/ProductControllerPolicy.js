@@ -6,14 +6,7 @@ module.exports = {
 			code: joi.string(),
 			description: joi.string().allow(''),
 			category_id: joi.number().integer(),
-			manufacturer_id: joi.number().integer(),
-			price: joi.number().integer(),
-			carat: joi.number().integer().allow(null),
-			gold: joi.number().integer().allow(null),
-			diamond: joi.number().integer().allow(null),
-			labor: joi.number().integer().allow(null),
-			manufacture_cost: joi.number().integer().allow(null),
-			manufacture_date: joi.date().iso()
+			price: joi.number().positive().precision(2).required(),
 		}	
 
 		const {error,value} = joi.validate(req.body,schema)

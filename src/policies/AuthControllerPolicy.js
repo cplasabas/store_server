@@ -14,12 +14,12 @@ module.exports = {
 		}	
 
 		const {error,value} = joi.validate(req.body,schema)
-
 		if(!error){
 			next()	
 		}else{
+
 			res.status(400).send({
-	
+				
 				error: error.details[0].message
 			})
 		}

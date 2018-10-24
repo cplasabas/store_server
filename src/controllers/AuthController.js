@@ -40,7 +40,6 @@ module.exports = {
 				    	id: user._id, message: "User registered." 
 				    })
 				}).catch(error => {
-
 				   res.status(400).send({
 				   		message: error.message
 				   })

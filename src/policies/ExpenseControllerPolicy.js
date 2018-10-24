@@ -6,7 +6,7 @@ module.exports = {
 			name: joi.string(),
 			description: joi.string().allow(''),
 			amount: joi.number().integer(),
-			data: joi.date().iso()
+			date: joi.date().iso()
 		}	
 
 		const {error,value} = joi.validate(req.body,schema)
