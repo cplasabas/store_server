@@ -25,7 +25,7 @@ module.exports = {
 			}
 		}).catch(error =>{
 			res.status(400).send({
-		   		message: "Username not found."
+		   		message: "Username not found. "+error
 		   	})
 		})
 	},
