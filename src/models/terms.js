@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => 
-	sequelize.define('terms', {
+	sequelize.define('term', {
 		name: DataTypes.STRING,
 		description: DataTypes.STRING,
 		interest: {
