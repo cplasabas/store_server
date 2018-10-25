@@ -7,6 +7,7 @@ module.exports = {
 			description: joi.string().allow(''),
 			category_id: joi.number().integer(),
 			price: joi.number().positive().precision(2).required(),
+			status: joi.string().allow(''),
 		}	
 
 		const {error,value} = joi.validate(req.body,schema)

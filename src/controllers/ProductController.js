@@ -13,10 +13,14 @@ module.exports = {
 	},
 	async create (req,res){
 			try{
+				let body = req.body;
+				let status = body.status;
+				delete body.status;
+				
 				await products.create(req.body).then(product => {
 					var status_payload = {
 						product_id : product.dataValues.id,
-						status: "Manufactured",
+						status: status,
 					}
 
 					product_status.create(status_payload).then(status => {
