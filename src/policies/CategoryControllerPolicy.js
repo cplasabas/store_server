@@ -5,6 +5,7 @@ module.exports = {
 		const schema = {
 			name: joi.string(),
 			description: joi.string().allow(''),
+			commission_rate: joi.number().integer(),
 		}	
 
 		const {error,value} = joi.validate(req.body,schema)

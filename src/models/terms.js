@@ -2,8 +2,12 @@ module.exports = (sequelize, DataTypes) =>
 	sequelize.define('terms', {
 		name: DataTypes.STRING,
 		description: DataTypes.STRING,
-		months: {
+		interest: {
 			type: DataTypes.INTEGER,
+			defaultValue: 0
+		},
+		months: {
+			type: DataTypes.DOUBLE,
 			defaultValue: 0
 		},
 		years: {
