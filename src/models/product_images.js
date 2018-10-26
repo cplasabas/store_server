@@ -4,7 +4,9 @@ module.exports = (sequelize, DataTypes) =>
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    image: DataTypes.STRING,
+    filename: DataTypes.STRING,
+    public_id: DataTypes.STRING,
+    url: DataTypes.STRING,
     createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW

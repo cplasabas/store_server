@@ -1,11 +1,21 @@
 const {products} = require('../models')
 const {product_status} = require('../models')
 const {product_details} = require('../models')
+const { product_images } = require('../models')
 const {categories} = require('../models')
+
+const cloudinary = require('cloudinary');
+
+cloudinary.config({
+	cloud_name: 'dtrdp4uus',
+	api_key: '223544386456498',
+	api_secret: 'HAc2y3UwfcEWkNhUqecKcAOS4OM'
+});
+
 
 module.exports = {
 	index (req,res){
-		products.all({include:[product_details,product_status,categories]}).then(product => {
+		products.all({include:[product_details,product_status,product_images,categories]}).then(product => {
   			res.status(200).send({
 		   		products: product
 			})
@@ -17,7 +27,7 @@ module.exports = {
 				let status = body.status;
 				delete body.status;
 				
-				await products.create(req.body).then(product => {
+				await products.create(body).then(product => {
 					var status_payload = {
 						product_id : product.dataValues.id,
 						status: status,
@@ -56,19 +66,19 @@ module.exports = {
 	show (req,res){
 		const id = req.params.id
 		products.findAll({
-	        where: {
-	        	id:id
+			where: {
+				id:id
 			},
-			include: [product_details,product_status]
-	     }).then(product => {
-	        if (product && product.length > 0) {
-	            res.status(200).send({
-		  	 		data: product
-		  		})
-	        }else{
-	        	res.status(204).send()
-	        }
-	     })
+			include: [product_details, product_status, product_images]
+		}).then(product => {
+			if (product && product.length > 0) {
+				res.status(200).send({
+					data: product
+				})
+			}else{
+				res.status(204).send()
+			}
+		})
 	},
 	update (req,res){
 		const id = req.params.id
@@ -154,4 +164,36 @@ module.exports = {
 			})
 		})
 	},
+	upload(req, res){
+		try {
+			cloudinary.uploader.upload(req.file.path)
+			.then(function (image) {
+				const id = req.params.id
+				let payload = {
+					product_id: id,
+					filename: req.file.filename,
+					public_id: image.public_id,
+					url: image.url
+				}
+				product_images.create(payload).then(image => {
+					res.status(201).send({
+						filename: req.file, message: "File uploaded successfully."
+					})
+				}).catch(error => {
+					res.status(400).send({
+						message: error.message
+					})
+				})
+			})
+			.catch(function (error) {
+				res.status(400).send({
+					message: error
+				})
+			});
+		} catch (error) {
+			res.status(400).send({
+				message: error
+			})
+		}
+	}
 }
