@@ -177,7 +177,7 @@ module.exports = {
 				}
 				product_images.create(payload).then(image => {
 					res.status(201).send({
-						filename: req.file, message: "File uploaded successfully."
+						file: req.file,image: image, message: "Image uploaded successfully."
 					})
 				}).catch(error => {
 					res.status(400).send({
@@ -195,5 +195,56 @@ module.exports = {
 				message: error
 			})
 		}
+	},
+	deleteImage (req,res){
+		const id = req.params.id
+		const image_id = req.params.image_id
+
+		product_images.findAll({
+			where: {
+				id: image_id,
+				product_id: id
+			},
+		}).then(image => {
+			if (image && image.length > 0) {
+				try {
+					cloudinary.uploader.destroy(image[0].dataValues.public_id, function (result) {
+						if(!result.error){
+							product_images.destroy({
+								where: {
+									id: image_id,
+									product_id: id
+								}
+							}).then(() => {
+								res.status(200).send({
+									result: result, message: "Image deleted successfully."
+								})
+							}).catch(function (error) {
+								res.status(400).send({
+									message: error
+								})
+							});
+						
+						}else{
+							res.status(400).send({
+								message: result.error
+							})
+						}
+					}).catch(function (error) {
+						res.status(400).send({
+							message: error
+						})
+					});
+				} 
+				catch (error) {
+					res.status(400).send({
+						message: error
+					})
+				}
+			} else {
+				res.status(204).send()
+			}
+		})
+	
 	}
 }
