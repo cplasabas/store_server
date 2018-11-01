@@ -6,6 +6,7 @@ module.exports = {
 			name: joi.string(),
 			description: joi.string().allow(''),
 			amount: joi.number().integer(),
+			type: joi.number().integer(),
 			date: joi.date().iso()
 		}	
 

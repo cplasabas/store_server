@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) =>
       type: DataTypes.DOUBLE,
       defaultValue: 0
     },
+    diamond_weight_price: {
+      type: DataTypes.DOUBLE,
+      defaultValue: 0
+    },
     gold_weight: {
       type: DataTypes.DOUBLE,
       defaultValue: 0

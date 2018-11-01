@@ -3,6 +3,11 @@ module.exports = (sequelize, DataTypes) =>
     name: DataTypes.STRING,
     description: DataTypes.STRING,
     amount: DataTypes.DOUBLE,
+    type: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1
+    },
     date: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW
