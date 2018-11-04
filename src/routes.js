@@ -19,19 +19,23 @@ let multer = require('multer')
 let upload = multer({ dest: './uploads/' });
 
 module.exports = (app) => {
-	app.post('/register',AuthControllerPolicy.register,AuthController.register)
 	app.post('/login',AuthController.login)
 
-    app.use('/',JwtControllerPolicy.secure)
+	app.get('/product', ProductController.index)
+	app.get('/product/:id', ProductController.show)
+
+	app.use('/',JwtControllerPolicy.secure)
+	
+	app.post('/register', AuthControllerPolicy.register, AuthController.register)
     
 	app.get('/user',UserController.index)
 	app.get('/user/:id',UserController.show)
 	app.put('/user/:id',UserController.update)
 	app.delete('/user/:id',UserController.delete)
 
-	app.get('/product',ProductController.index)
+	
 	app.post('/product',ProductControllerPolicy.create,ProductController.create)
-	app.get('/product/:id',ProductController.show)
+
 	app.put('/product/:id',ProductController.update)
 	app.delete('/product/:id',ProductController.delete)
 	app.put('/product_details/:id', ProductController.updateDetails)
