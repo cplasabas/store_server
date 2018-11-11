@@ -24,6 +24,9 @@ module.exports = (app) => {
 	app.get('/product', ProductController.index)
 	app.get('/product/:id', ProductController.show)
 
+	app.get('/category',CategoryController.index)
+		app.get('/category/:id',CategoryController.show)
+
 	app.use('/',JwtControllerPolicy.secure)
 	
 	app.post('/register', AuthControllerPolicy.register, AuthController.register)
@@ -33,9 +36,7 @@ module.exports = (app) => {
 	app.put('/user/:id',UserController.update)
 	app.delete('/user/:id',UserController.delete)
 
-	
 	app.post('/product',ProductControllerPolicy.create,ProductController.create)
-
 	app.put('/product/:id',ProductController.update)
 	app.delete('/product/:id',ProductController.delete)
 	app.put('/product_details/:id', ProductController.updateDetails)
@@ -55,9 +56,7 @@ module.exports = (app) => {
 	app.put('/term/:id', TermsController.update)
 	app.delete('/term/:id', TermsController.delete)
 
-	app.get('/category',CategoryController.index)
 	app.post('/category',CategoryControllerPolicy.create,CategoryController.create)
-	app.get('/category/:id',CategoryController.show)
 	app.put('/category/:id',CategoryController.update)
 	app.delete('/category/:id',CategoryController.delete)
 }	
