@@ -53,7 +53,7 @@ module.exports = {
       })
     }).catch(error => {
       res.status(400).send({
-        message: "Failed to update term."
+        message: "Failed to update term. " + error
       })
     })
   },

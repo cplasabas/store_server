@@ -15,6 +15,9 @@ const TermsControllerPolicy = require("./policies/TermsControllerPolicy")
 const CategoryController = require("./controllers/CategoryController")
 const CategoryControllerPolicy = require("./policies/CategoryControllerPolicy")
 
+const CustomerController = require("./controllers/CustomerController")
+const CustomerControllerPolicy = require("./policies/CustomerControllerPolicy")
+
 let multer = require('multer')
 let upload = multer({ dest: './uploads/' });
 
@@ -59,4 +62,10 @@ module.exports = (app) => {
 	app.post('/category',CategoryControllerPolicy.create,CategoryController.create)
 	app.put('/category/:id',CategoryController.update)
 	app.delete('/category/:id',CategoryController.delete)
+
+	app.get('/customer',CustomerController.index)
+	app.post('/customer',CustomerControllerPolicy.create,CustomerController.create)
+	app.get('/customer/:id',CustomerController.show)
+	app.put('/customer/:id',CustomerController.update)
+	app.delete('/customer/:id',CustomerController.delete)
 }	

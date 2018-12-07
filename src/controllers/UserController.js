@@ -1,4 +1,5 @@
 const {users} = require('../models')
+const bcrypt = require('bcryptjs')
 
 module.exports = {
 	index (req,res){
@@ -25,8 +26,13 @@ module.exports = {
 	     })
 	},
 	update (req,res){
-		const id = req.params.id
-		users.update(req.body,{
+		const id = req.params.id;
+		
+		var hashedPassword = bcrypt.hashSync(req.body.password, 8);
+		var body = req.body;
+			body.password = hashedPassword;
+
+		users.update(body,{
 			where:{
 				id:id
 			}

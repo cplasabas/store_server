@@ -5,9 +5,9 @@ module.exports = (sequelize, DataTypes) =>
 			allowNull: false
 		},
 		status: DataTypes.STRING,
-		seller: {
-			type: DataTypes.STRING,
-			allowNull: true
+		customer_id: {
+			type: DataTypes.INTEGER,
+			allowNull: false
 		},
 		selling_price:{
 			type: DataTypes.DOUBLE,
