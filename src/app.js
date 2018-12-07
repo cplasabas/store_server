@@ -69,7 +69,7 @@ sequelize.sync().then(() => {
 
         const mailOptions = {
           from: '"Davoh Admin" <admin@davohjewelryco.com>',
-          to: 'cedricangelo.plasabas@gmail.com',
+          to: 'sahilparikh@davohjewelryco.com',
           subject: 'Davoh Daily Report',
           html: '<b>Report for '+moment().format('MMMM D, YYYY')+' </b><br><p>Total Sales: '+formatCurrency(total_sales, currency_options)+'</p><p>Total Commission: '+formatCurrency(total_commission, currency_options)+'</p><p>Total Sales: '+formatCurrency(total_expenses, currency_options)+'</p><br><a href="http://admin.davohjewelryco.com" target="_blank">Davoh Admin</a>'
         }
