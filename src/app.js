@@ -1,4 +1,5 @@
 const express = require('express')
+const fs = require('fs')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
@@ -9,6 +10,7 @@ const nodemailer = require('nodemailer');
 const moment = require('moment');
 const formatCurrency = require('format-currency')
 
+const https = require('https')
 const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
@@ -30,7 +32,11 @@ var transporter = nodemailer.createTransport({
 require('./routes')(app)
 
 sequelize.sync().then(() => {
-  app.listen(config.port)
+  https.createServer({
+    key: fs.readFileSync('server.key'),
+    cert: fs.readFileSync('server.cert')
+  }, app)
+  .listen(config.port)
 
   //Compute Sales, Commission and Expense Today
   const {products} = require('./models')
