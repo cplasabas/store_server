@@ -31,12 +31,21 @@ var transporter = nodemailer.createTransport({
 
 require('./routes')(app)
 
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/admin.davohjewelryco.com/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/admin.davohjewelryco.com/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/admin.davohjewelryco.com/chain.pem', 'utf8');
+
+const credentials = {
+	key: privateKey,
+	cert: certificate,
+	ca: ca
+};
+
 sequelize.sync().then(() => {
-  https.createServer({
-    key: fs.readFileSync('server.key'),
-    cert: fs.readFileSync('server.cert')
-  }, app)
-  .listen(config.port)
+  https.createServer(credentials, app).listen(config.port)
+
+  //Local Config
+  // app.listen(config.port)
 
   //Compute Sales, Commission and Expense Today
   const {products} = require('./models')
