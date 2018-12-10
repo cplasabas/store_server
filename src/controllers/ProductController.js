@@ -1,8 +1,10 @@
 const {products} = require('../models')
 const {product_status} = require('../models')
 const {product_details} = require('../models')
-const { product_images } = require('../models')
-const {categories} = require('../models')
+const {product_images } = require('../models')
+const {categories } = require('../models')
+const {suppliers } = require('../models')
+const {shipments} = require('../models')
 
 const cloudinary = require('cloudinary');
 
@@ -15,7 +17,7 @@ cloudinary.config({
 
 module.exports = {
 	index (req,res){
-		products.all({include:[product_details,product_status,product_images,categories]}).then(product => {
+		products.all({include:[product_details,product_status,product_images,categories,suppliers,shipments]}).then(product => {
   			res.status(200).send({
 		   		products: product
 			})
@@ -69,7 +71,7 @@ module.exports = {
 			where: {
 				id:id
 			},
-			include: [product_details, product_status, product_images]
+			include: [product_details, product_status, product_images,categories,suppliers,shipments]
 		}).then(product => {
 			if (product && product.length > 0) {
 				res.status(200).send({
@@ -165,6 +167,8 @@ module.exports = {
 		})
 	},
 	upload(req, res){
+		console.log("yes!");
+		
 		try {
 			cloudinary.uploader.upload(req.file.path)
 			.then(function (image) {

@@ -1,15 +1,16 @@
 module.exports = (sequelize, DataTypes) => 
-	sequelize.define('term', {
+	sequelize.define('supplier', {
 		name: DataTypes.STRING,
-		description: DataTypes.STRING,
-		interest: {
-			type: DataTypes.DOUBLE,
-			defaultValue: 0
+		code:{
+			type: DataTypes.STRING,
+			unique: true
 		},
-		days: {
-			type: DataTypes.INTEGER,
-			defaultValue: 0
+		email: DataTypes.STRING,
+		contact: {
+			type: DataTypes.STRING,
+			allowNull: true
 		},
+		address: DataTypes.STRING,
 		createdAt:{
 			type: DataTypes.DATE,
 			defaultValue:DataTypes.NOW

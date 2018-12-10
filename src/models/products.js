@@ -6,6 +6,16 @@ module.exports = (sequelize, DataTypes) =>
 			type: DataTypes.INTEGER,
 			allowNull: false
 		},
+		supplier_id: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			defaultValue: 0
+		},
+		shipment_id: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			defaultValue: 0
+		},
 		price: DataTypes.DOUBLE,
 		createdAt:{
 			type: DataTypes.DATE,

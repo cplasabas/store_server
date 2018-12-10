@@ -4,9 +4,8 @@ module.exports = {
 	create (req,res,next) {
 		const schema = {
 			name: joi.string(),
-			email: joi.string().email().allow(''),
-			contact: joi.string().allow(''),
-			address: joi.string().allow('')
+			code: joi.string(),
+			date: joi.date().iso()
 		}	
 
 		const {error,value} = joi.validate(req.body,schema)

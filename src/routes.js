@@ -18,6 +18,15 @@ const CategoryControllerPolicy = require("./policies/CategoryControllerPolicy")
 const CustomerController = require("./controllers/CustomerController")
 const CustomerControllerPolicy = require("./policies/CustomerControllerPolicy")
 
+const AgentController = require("./controllers/AgentController")
+const AgentControllerPolicy = require("./policies/AgentControllerPolicy")
+
+const SupplierController = require("./controllers/SupplierController")
+const SupplierControllerPolicy = require("./policies/SupplierControllerPolicy")
+
+const ShipmentController = require("./controllers/ShipmentController")
+const ShipmentControllerPolicy = require("./policies/ShipmentControllerPolicy")
+
 let multer = require('multer')
 let upload = multer({ dest: './uploads/' });
 
@@ -68,4 +77,22 @@ module.exports = (app) => {
 	app.get('/customer/:id',CustomerController.show)
 	app.put('/customer/:id',CustomerController.update)
 	app.delete('/customer/:id',CustomerController.delete)
+
+	app.get('/agent',AgentController.index)
+	app.post('/agent',AgentControllerPolicy.create,AgentController.create)
+	app.get('/agent/:id',AgentController.show)
+	app.put('/agent/:id',AgentController.update)
+	app.delete('/agent/:id',AgentController.delete)
+
+	app.get('/supplier',SupplierController.index)
+	app.post('/supplier',SupplierControllerPolicy.create,SupplierController.create)
+	app.get('/supplier/:id',SupplierController.show)
+	app.put('/supplier/:id',SupplierController.update)
+	app.delete('/supplier/:id',SupplierController.delete)
+
+	app.get('/shipment',ShipmentController.index)
+	app.post('/shipment',ShipmentControllerPolicy.create,ShipmentController.create)
+	app.get('/shipment/:id',ShipmentController.show)
+	app.put('/shipment/:id',ShipmentController.update)
+	app.delete('/shipment/:id',ShipmentController.delete)
 }	

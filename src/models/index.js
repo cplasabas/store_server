@@ -20,12 +20,18 @@ db.product_images = require('../models/product_images.js')(sequelize, Sequelize)
 db.expenses = require('../models/expenses.js')(sequelize, Sequelize);
 db.categories = require('../models/categories.js')(sequelize, Sequelize);
 db.customers = require('../models/customers.js')(sequelize, Sequelize);
+db.agents = require('../models/agents.js')(sequelize, Sequelize);
+db.suppliers = require('../models/suppliers.js')(sequelize, Sequelize);
+db.shipments = require('../models/shipments.js')(sequelize, Sequelize);
 
 db.products.belongsTo(db.categories,{foreignKey: 'category_id',AS:'category'})
+db.products.belongsTo(db.suppliers,{foreignKey: 'supplier_id',AS:'supplier'})
+db.products.belongsTo(db.shipments,{foreignKey: 'shipment_id',AS:'shipment'})
 db.products.hasOne(db.product_status,{foreignKey: 'product_id',AS:'product_status'})
 db.products.hasOne(db.product_details, { foreignKey: 'product_id', AS: 'product_details' })
 db.terms.hasOne(db.product_status, { foreignKey: 'term_id', AS: 'term' })
 db.customers.hasOne(db.product_status, { foreignKey: 'customer_id', AS: 'customer' })
+db.agents.hasOne(db.product_status, { foreignKey: 'agent_id', AS: 'agent' })
 db.products.hasMany(db.product_images, { foreignKey: 'product_id', AS: 'product_image' })
 
 db.sequelize = sequelize

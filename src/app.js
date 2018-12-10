@@ -31,21 +31,21 @@ var transporter = nodemailer.createTransport({
 
 require('./routes')(app)
 
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/api.davohjewelryco.com/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/api.davohjewelryco.com/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/api.davohjewelryco.com/chain.pem', 'utf8');
+// const privateKey = fs.readFileSync('/etc/letsencrypt/live/api.davohjewelryco.com/privkey.pem', 'utf8');
+// const certificate = fs.readFileSync('/etc/letsencrypt/live/api.davohjewelryco.com/cert.pem', 'utf8');
+// const ca = fs.readFileSync('/etc/letsencrypt/live/api.davohjewelryco.com/chain.pem', 'utf8');
 
-const credentials = {
-	key: privateKey,
-	cert: certificate,
-	ca: ca
-};
+// const credentials = {
+// 	key: privateKey,
+// 	cert: certificate,
+// 	ca: ca
+// };
 
 sequelize.sync().then(() => {
-  https.createServer(credentials, app).listen(config.port)
+  // https.createServer(credentials, app).listen(config.port)
 
   //Local Config
-  // app.listen(config.port)
+  app.listen(config.port)
 
   //Compute Sales, Commission and Expense Today
   const {products} = require('./models')
@@ -56,7 +56,7 @@ sequelize.sync().then(() => {
   const date_now = moment().format("YYYY-MM-DD");
   
   // Email Sales and Expense every 5pm
-  const mailJob = schedule.scheduleJob('30 16 * * *', function(){
+  const mailJob = schedule.scheduleJob('0 22 * * *', function(){
     products.findAll({include:[product_details,product_status]}).then(products => {
       let products_today = products.filter( function(product){
         return moment(date_now,"YYYY-MM-DD").isSame(product.product_status.sold_date);

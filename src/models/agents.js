@@ -1,15 +1,12 @@
 module.exports = (sequelize, DataTypes) => 
-	sequelize.define('term', {
+	sequelize.define('agent', {
 		name: DataTypes.STRING,
-		description: DataTypes.STRING,
-		interest: {
-			type: DataTypes.DOUBLE,
-			defaultValue: 0
+		email: DataTypes.STRING,
+		contact: {
+			type: DataTypes.STRING,
+			allowNull: true
 		},
-		days: {
-			type: DataTypes.INTEGER,
-			defaultValue: 0
-		},
+		address: DataTypes.STRING,
 		createdAt:{
 			type: DataTypes.DATE,
 			defaultValue:DataTypes.NOW
