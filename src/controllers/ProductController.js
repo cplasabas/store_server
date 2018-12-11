@@ -167,38 +167,40 @@ module.exports = {
 		})
 	},
 	upload(req, res){
-		console.log("yes!");
 		
-		// try {
-		// 	cloudinary.uploader.upload(req.file.path)
-		// 	.then(function (image) {
-		// 		const id = req.params.id
-		// 		let payload = {
-		// 			product_id: id,
-		// 			filename: req.file.filename,
-		// 			public_id: image.public_id,
-		// 			url: image.url
-		// 		}
-		// 		product_images.create(payload).then(image => {
-		// 			res.status(201).send({
-		// 				file: req.file,image: image, message: "Image uploaded successfully."
-		// 			})
-		// 		}).catch(error => {
-		// 			res.status(400).send({
-		// 				message: error.message
-		// 			})
-		// 		})
-		// 	})
-		// 	.catch(function (error) {
-		// 		res.status(400).send({
-		// 			message: error
-		// 		})
-		// 	});
-		// } catch (error) {
-		// 	res.status(400).send({
-		// 		message: error
-		// 	})
-		// }
+		try {
+			cloudinary.uploader.upload(req.file.path)
+			.then(function (image) {
+				const id = req.params.id
+				let payload = {
+					product_id: id,
+					filename: req.file.filename,
+					public_id: image.public_id,
+					url: image.url
+				}
+				product_images.create(payload).then(image => {
+					res.status(201).send({
+						file: req.file,image: image, message: "Image uploaded successfully."
+					})
+				}).catch(error => {
+					res.status(400).send({
+						message: error.message
+					})
+				})
+			})
+			.catch(function (error) {
+				console.log(error);
+				
+				res.status(400).send({
+					message: error
+				})
+			});
+		} catch (error) {
+			console.log(error);
+			res.status(400).send({
+				message: error
+			})
+		}
 	},
 	deleteImage (req,res){
 		const id = req.params.id
