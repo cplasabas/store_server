@@ -1,6 +1,9 @@
 module.exports = (sequelize, DataTypes) => 
 	sequelize.define('shipment', {
-		name: DataTypes.STRING,
+		supplier_id: {
+			type: DataTypes.INTEGER,
+			allowNull: false
+		},
 		code: DataTypes.STRING,
         date: {
             type: DataTypes.DATE,

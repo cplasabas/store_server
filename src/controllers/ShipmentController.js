@@ -1,8 +1,9 @@
 const {shipments} = require('../models')
+const {suppliers} = require('../models')
 
 module.exports = {
 	index (req,res){
-		shipments.all().then(shipment => {
+		shipments.all({include:[suppliers]}).then(shipment => {
   			res.status(200).send({
 		   		shipments: shipment
 			})
@@ -32,7 +33,8 @@ module.exports = {
 		shipments.findAll({
 	        where: {
 	        	id:id
-	        }
+					},
+					include: [suppliers]
 	     }).then(shipment => {
 	        if (shipment && shipment.length > 0) {
 	            res.status(200).send({

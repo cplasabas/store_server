@@ -33,6 +33,7 @@ db.terms.hasOne(db.product_status, { foreignKey: 'term_id', AS: 'term' })
 db.customers.hasOne(db.product_status, { foreignKey: 'customer_id', AS: 'customer' })
 db.agents.hasOne(db.product_status, { foreignKey: 'agent_id', AS: 'agent' })
 db.products.hasMany(db.product_images, { foreignKey: 'product_id', AS: 'product_image' })
+db.shipments.belongsTo(db.suppliers,{foreignKey: 'supplier_id',AS:'supplier'})
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize
