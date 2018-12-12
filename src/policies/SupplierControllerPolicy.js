@@ -4,7 +4,6 @@ module.exports = {
 	create (req,res,next) {
 		const schema = {
 			name: joi.string(),
-			code: joi.string(),
 			email: joi.string().email().allow(''),
 			contact: joi.string().allow(''),
 			address: joi.string().allow('')
