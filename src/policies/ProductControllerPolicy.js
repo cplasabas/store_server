@@ -6,6 +6,8 @@ module.exports = {
 			code: joi.string(),
 			description: joi.string().allow(''),
 			category_id: joi.number().integer(),
+			supplier_id: joi.number().integer(),
+			shipment_id: joi.number().integer(),
 			price: joi.number().positive().precision(2).required(),
 			status: joi.string().allow(''),
 		}	
