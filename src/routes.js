@@ -27,6 +27,12 @@ const SupplierControllerPolicy = require("./policies/SupplierControllerPolicy")
 const ShipmentController = require("./controllers/ShipmentController")
 const ShipmentControllerPolicy = require("./policies/ShipmentControllerPolicy")
 
+const PurchaseReturnsController = require("./controllers/PurchaseReturnsController")
+const PurchaseReturnsControllerPolicy = require("./policies/PurchaseReturnsControllerPolicy")
+
+const SalesReturnsController = require("./controllers/SalesReturnsController")
+const SalesReturnsControllerPolicy = require("./policies/SalesReturnsControllerPolicy")
+
 let multer = require('multer')
 let upload = multer({ dest: './uploads/' });
 
@@ -95,4 +101,16 @@ module.exports = (app) => {
 	app.get('/shipment/:id',ShipmentController.show)
 	app.put('/shipment/:id',ShipmentController.update)
 	app.delete('/shipment/:id',ShipmentController.delete)
+
+	app.get('/purchase_returns',PurchaseReturnsController.index)
+	app.post('/purchase_returns',PurchaseReturnsControllerPolicy.create,PurchaseReturnsController.create)
+	app.get('/purchase_returns/:id',PurchaseReturnsController.show)
+	app.put('/purchase_returns/:id',PurchaseReturnsController.update)
+	app.delete('/purchase_returns/:id',PurchaseReturnsController.delete)
+
+	app.get('/Sales_returns',SalesReturnsController.index)
+	app.post('/Sales_returns',SalesReturnsControllerPolicy.create,SalesReturnsController.create)
+	app.get('/Sales_returns/:id',SalesReturnsController.show)
+	app.put('/Sales_returns/:id',SalesReturnsController.update)
+	app.delete('/Sales_returns/:id',SalesReturnsController.delete)
 }	
