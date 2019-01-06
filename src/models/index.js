@@ -23,6 +23,8 @@ db.customers = require('../models/customers.js')(sequelize, Sequelize);
 db.agents = require('../models/agents.js')(sequelize, Sequelize);
 db.suppliers = require('../models/suppliers.js')(sequelize, Sequelize);
 db.shipments = require('../models/shipments.js')(sequelize, Sequelize);
+db.sales_returns = require('../models/sales_returns.js')(sequelize, Sequelize);
+db.purchase_returns = require('../models/purchase_returns.js')(sequelize, Sequelize);
 
 db.products.belongsTo(db.categories,{foreignKey: 'category_id',AS:'category'})
 db.products.belongsTo(db.suppliers,{foreignKey: 'supplier_id',AS:'supplier'})
