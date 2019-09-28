@@ -7,8 +7,7 @@ module.exports = (sequelize, DataTypes) =>
     amount: DataTypes.DOUBLE,
     or_type: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 1
+      allowNull: true
     },
     type: {
       type: DataTypes.INTEGER,
