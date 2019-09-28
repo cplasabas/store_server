@@ -5,7 +5,7 @@ module.exports = {
 		const schema = {
 			name: joi.string(),
 			description: joi.string().allow(''),
-			amount: joi.number().integer(),
+			amount: joi.number(),
 			type: joi.number().integer(),
 			date: joi.date().iso()
 		}	
