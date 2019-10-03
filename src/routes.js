@@ -55,6 +55,7 @@ module.exports = (app) => {
 	app.delete('/user/:id',UserController.delete)
 
 	app.post('/product',ProductControllerPolicy.create,ProductController.create)
+	app.get('/sales', ProductController.sales)
 	app.put('/product/:id',ProductController.update)
 	app.delete('/product/:id',ProductController.delete)
 	app.put('/product_details/:id', ProductController.updateDetails)
