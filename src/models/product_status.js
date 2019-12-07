@@ -35,6 +35,11 @@ module.exports = (sequelize, DataTypes) =>
 			defaultValue: 0,
 			allowNull: true
 		},
+		payment_type: {
+			type: DataTypes.INTEGER,
+			defaultValue: 0,
+			allowNull: true
+		},
 		paid: {
 			type: DataTypes.DOUBLE,
 			allowNull: true
