@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) =>
 			type: DataTypes.DATE,
 			allowNull: true
 		},
+		commission_rate: {
+			type: DataTypes.DOUBLE,
+			allowNull: true
+		},
 		commission: {
 			type: DataTypes.DOUBLE,
 			allowNull: true
