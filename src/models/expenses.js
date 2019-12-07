@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) =>
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    payment_Type: {
+    payment_type: {
       type: DataTypes.INTEGER,
       allowNull: true
     },
