@@ -9,6 +9,7 @@ module.exports = {
 			tin: joi.string().allow(''),
 			amount: joi.number(),
 			or_type: joi.number().integer().allow(null).optional(),
+			payment_type: joi.number().integer().allow(null).optional()
 			type: joi.number().integer(),
 			date: joi.date().iso()
 		}	
