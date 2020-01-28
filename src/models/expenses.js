@@ -1,8 +1,18 @@
 module.exports = (sequelize, DataTypes) =>
   sequelize.define('expense', {
     name: DataTypes.STRING,
+    or_number: DataTypes.STRING,
+    tin: DataTypes.STRING,
     description: DataTypes.STRING,
     amount: DataTypes.DOUBLE,
+    or_type: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    payment_type: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
     type: {
       type: DataTypes.INTEGER,
       allowNull: false,

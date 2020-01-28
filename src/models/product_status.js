@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) =>
 			type: DataTypes.DATE,
 			allowNull: true
 		},
+		commission_rate: {
+			type: DataTypes.DOUBLE,
+			allowNull: true
+		},
 		commission: {
 			type: DataTypes.DOUBLE,
 			allowNull: true
@@ -31,6 +35,11 @@ module.exports = (sequelize, DataTypes) =>
 			allowNull: true
 		},
 		type: {
+			type: DataTypes.INTEGER,
+			defaultValue: 0,
+			allowNull: true
+		},
+		payment_type: {
 			type: DataTypes.INTEGER,
 			defaultValue: 0,
 			allowNull: true

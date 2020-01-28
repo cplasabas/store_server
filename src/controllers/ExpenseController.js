@@ -1,12 +1,33 @@
 const { expenses } = require('../models')
 
+const { Op } = require('sequelize')
+
 module.exports = {
   index(req, res) {
-    expenses.all().then(expenses => {
-      res.status(200).send({
-        expenses: expenses
+
+    let start_date = req.query.start_date;
+		let end_date = req.query.end_date;
+    
+    if (start_date && end_date) {
+      expenses.all({
+        where: { 
+          date: {
+            [Op.gte]: new Date(start_date),
+            [Op.lte]: new Date(end_date)
+          }
+        }
+      }).then(expenses => {
+        res.status(200).send({
+          expenses: expenses
+        })
       })
-    })
+    } else {
+      expenses.all().then(expenses => {
+        res.status(200).send({
+          expenses: expenses
+        })
+      })
+    }
   },
   async create(req, res) {
     try {

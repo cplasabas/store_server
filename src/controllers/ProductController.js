@@ -6,6 +6,8 @@ const {categories } = require('../models')
 const {suppliers } = require('../models')
 const {shipments} = require('../models')
 
+const { Op } = require('sequelize')
+
 const cloudinary = require('cloudinary');
 
 cloudinary.config({
@@ -17,9 +19,35 @@ cloudinary.config({
 
 module.exports = {
 	index (req,res){
-		products.all({include:[product_details,product_status,product_images,categories,suppliers,shipments]}).then(product => {
-  			res.status(200).send({
-		   		products: product
+		products.all({include:[product_details,product_status,product_images,categories,suppliers,shipments]}).then(products => {
+			res.status(200).send({
+				products: products
+			})
+		})
+	},
+	sales (req, res) {
+		let start_date = req.query.start_date;
+		let end_date = req.query.end_date;
+
+		products.all({
+			include: [
+				product_details,
+				{
+					model: product_status,
+					where: { 
+						status: 'Sold',
+						[Op.and]: {
+							sold_date: {
+								[Op.gte]: new Date(start_date),
+								[Op.lte]: new Date(end_date)
+							}
+						},
+					}
+				}
+			]
+		}).then(sales => {
+			res.status(200).send({
+				sales: sales
 			})
 		})
 	},
