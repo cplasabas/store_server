@@ -1,3 +1,4 @@
+TEST LANG
 const AuthController = require("./controllers/AuthController")
 const AuthControllerPolicy = require("./policies/AuthControllerPolicy")
 const UserController = require("./controllers/UserController")
